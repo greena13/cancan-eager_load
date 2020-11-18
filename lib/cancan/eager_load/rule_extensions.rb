@@ -9,7 +9,7 @@ module CanCan
         return nested_subject_matches_conditions?(subject) if subject.class == Hash
 
         unless subject_class?(subject)
-          subject.includes(conditions_to_includes(@conditions))
+          subject.includes(conditions_to_includes(@conditions)) if subject.is_a?(ActiveRecord::Base)
 
           return matches_conditions_hash?(subject)
         end
